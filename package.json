@@ -1,6 +1,6 @@
 {
   "name": "expo-native-safe-imports",
-  "version": "1.0.4",
+  "version": "1.0.7",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "repository": "git@github.com:roshab007/expo-native-safe-imports.git",

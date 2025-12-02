@@ -89,13 +89,17 @@ Add this into your metro.config.js:
 const { getDefaultConfig } = require("expo/metro-config");
 const fs = require("fs"); // Add This
 const path = require("path"); // Add This
+const { createRequire } = require("module"); // Add This
 
 const config = getDefaultConfig(__dirname);
+const requireESM = createRequire(__filename); // Add This
 
 // Add This
 const resolverPath = path.join(
   __dirname,
-  ".expo/native-safe-imports/metro.mjs"
+  ".expo",
+  "native-safe-imports",
+  "metro.mjs"
 );
 
 // Add This
@@ -103,7 +107,7 @@ const isExpoGo = process.env.npm_lifecycle_event === "start";
 
 // Add This
 if (isExpoGo && fs.existsSync(resolverPath)) {
-  const custom = require(resolverPath);
+  const custom = requireESM(resolverPath);
   config.resolver.resolveRequest = custom.resolveRequest;
 }
 

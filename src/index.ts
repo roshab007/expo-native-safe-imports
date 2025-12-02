@@ -29,22 +29,35 @@ const withNativeSafeImports: ConfigPlugin<NativeSafePluginConfig> = (
         path.join(dir, "metro.mjs"),
         `
 import fs from "fs";
+import path from "path";
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 
-const config = JSON.parse(
-  fs.readFileSync("./.expo/native-safe-imports/config.json", "utf-8")
-);
+const CONFIG_PATH = path.join(process.cwd(), ".expo", "native-safe-imports", "config.json");
+
+// Normalize path for Metro (Windows fix)
+function normalize(p) {
+  return p.replace(/\\\\/g, "/");
+}
+
+let config = { ignore: [] };
+try {
+  config = JSON.parse(fs.readFileSync(CONFIG_PATH, "utf-8"));
+} catch (e) {
+  console.warn("[expo-native-safe-imports] Failed reading config:", e);
+}
 
 export function resolveRequest(context, realModuleName, platform) {
   if (config.ignore.includes(realModuleName)) {
+    const stubPath = normalize(
+      require.resolve("expo-native-safe-imports/build/runtime/stub.js")
+    );
     return {
       type: "sourceFile",
-      filePath: require.resolve(
-        "expo-native-safe-imports/build/runtime/stub.js"
-      )
+      filePath: stubPath,
     };
   }
+
   return context.resolveRequest(context, realModuleName, platform);
 }
 `
