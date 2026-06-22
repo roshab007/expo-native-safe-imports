@@ -1,11 +1,11 @@
 {
   "name": "expo-native-safe-imports",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/roshab007/expo-native-safe-imports.git"
+    "url": "git+https://github.com/roshab007/expo-native-safe-imports.git"
   },
   "description": "Safely use native-only React Native libraries inside Expo Go.",
   "author": "roshab007",
@@ -17,7 +17,7 @@
     "build": "tsc",
     "prepublishOnly": "yarn build"
   },
-  "homepage": "https://github.com/roshab007",
+  "homepage": "https://github.com/roshab007/expo-native-safe-imports",
   "keywords": [
     "expo",
     "expo-plugin",
