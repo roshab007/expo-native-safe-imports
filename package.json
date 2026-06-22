@@ -3,7 +3,10 @@
   "version": "1.0.7",
   "main": "build/index.js",
   "types": "build/index.d.ts",
-  "repository": "git@github.com:roshab007/expo-native-safe-imports.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/roshab007/expo-native-safe-imports.git"
+  },
   "description": "Safely use native-only React Native libraries inside Expo Go.",
   "author": "roshab007",
   "license": "MIT",
