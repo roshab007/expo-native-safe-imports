@@ -1,6 +1,6 @@
 {
   "name": "expo-native-safe-imports",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "repository": {
@@ -10,6 +10,11 @@
   "description": "Safely use native-only React Native libraries inside Expo Go.",
   "author": "roshab007",
   "license": "MIT",
+  "platforms": {
+    "ios": true,
+    "android": true,
+    "expoGo": true
+  },
   "files": [
     "build"
   ],
